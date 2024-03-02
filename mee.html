@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="eyy.css">
+</head>
+<body>
+    <div class="left">
+        <div class="content">
+            <label>html</label>
+            <textarea></textarea>
+        </div>
+        <div class="content">
+            <label>css</label>
+            <textarea></textarea>
+        </div>
+        <div class="content"> 
+            <label>js</label>
+            <textarea></textarea>
+        </div>
+    </div>
+    <div class="right">
+        <label>output</label>
+        <iframe class="output"></iframe>
+    </div>
+
+    <script>
+        let ou = document.querySelector(".output");
+        let inp = document.querySelectorAll(".left textarea");
+        let html = '', css = '', js = '';
+
+        inp.forEach((el, index) => {
+            el.addEventListener("keyup", () => {
+                if (index === 0) {
+                    html = el.value;
+                }
+                if (index === 1) {
+                    css = el.value;
+                }
+                if (index === 2) {
+                    js = el.value;
+                }
+
+                ou.contentDocument.body.innerHTML = html;
+                ou.contentDocument.head.innerHTML = `<style>${css}</style>`;
+                ou.contentWindow.eval(js);
+            });
+        });
+    </script>
+</body>
+</html>
